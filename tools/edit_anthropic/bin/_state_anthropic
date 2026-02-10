@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import json
+import os
+from pathlib import Path
+
+
+def main():
+    # Get the tools directory from the script location
+    # Script is at: <tools_dir>/edit_anthropic/bin/_state_anthropic
+    # State file should be at: <tools_dir>/state.json
+    script_dir = Path(__file__).parent
+    tools_dir = script_dir.parent.parent
+    state_path = tools_dir / "state.json"
+
+    if state_path.exists():
+        state = json.loads(state_path.read_text())
+    else:
+        state = {}
+
+    state["working_dir"] = os.getcwd()
+
+    state_path.write_text(json.dumps(state))
+
+
+if __name__ == "__main__":
+    main()
