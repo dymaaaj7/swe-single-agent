@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# file_size - Show file sizes in human-readable format
+
+if [ $# -eq 0 ]; then
+    echo "Usage: file_size <path> [--all]"
+    exit 1
+fi
+
+PATH_ARG="$1"
+SHOW_ALL=false
+
+# Check for optional --all flag
+if [ "$2" = "--all" ]; then
+    SHOW_ALL=true
+fi
+
+if [ ! -e "$PATH_ARG" ]; then
+    echo "Error: '$PATH_ARG' not found"
+    exit 1
+fi
+
+if [ "$SHOW_ALL" = true ] && [ -d "$PATH_ARG" ]; then
+    # Show all files in directory, sorted by size
+    du -h "$PATH_ARG"/* 2>/dev/null | sort -h
+else
+    # Show just the single file/directory
+    du -h "$PATH_ARG"
+fi

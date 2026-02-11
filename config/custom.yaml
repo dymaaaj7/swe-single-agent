@@ -48,17 +48,6 @@ agent:
       - However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files
       - Submit your changes and finish your work by issuing the submit command.
         Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>
-
-      ## Available Tools
-
-      You have access to the following tools:
-      - `str_replace_editor` - Custom editing tool for viewing, creating and editing files
-      - `filemap` - Print the contents of a Python file, skipping lengthy function and method definitions
-      - `search_dir` - Search for a term in all files in a directory
-      - `search_file` - Search for a term in a specific file
-      - `find_file` - Find files with a given name or pattern
-      - `submit` - Submit your solution when you're done
-      - `bash` - Execute bash commands (enabled by default)
     next_step_template: |-
       OBSERVATION:
       {{observation}}
@@ -75,9 +64,13 @@ agent:
     bundles:
       - path: tools/registry
       - path: tools/edit_anthropic
-      - path: tools/review_on_submit_m
+      - path: tools/submit
       - path: tools/search
       - path: tools/filemap
+      - path: tools/file_size
+      - path: tools/count_lines
+      - path: tools/todo_finder
+      - path: tools/test_runner
     registry_variables:
       USE_FILEMAP: 'true'
       SUBMIT_REVIEW_MESSAGES:

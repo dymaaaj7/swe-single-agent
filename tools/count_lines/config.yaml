@@ -1,0 +1,9 @@
+tools:
+  count_lines:
+    signature: "count_lines <file_path>"
+    docstring: "Count the number of lines in a file. Useful for estimating file size before opening large files."
+    arguments:
+      - name: file_path
+        type: string
+        description: "Path to the file to count lines in"
+        required: true

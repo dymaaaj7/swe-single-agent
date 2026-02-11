@@ -1,0 +1,14 @@
+tools:
+  todo_finder:
+    signature: "todo_finder <path> [<recursive>]"
+    docstring: "FInd TODO, FIXME, and XXX comments in code files. Shows file path, line number, and the comment text. Use --recursive to search subdirectories."
+    arguments:
+      - name: path
+        type: string
+        description: "Path to file or directory to search"
+        required: true
+      - name: recursive
+        type: boolean
+        description: "Search recursively in subdirectories."
+        required: false
+        argument_format: "--{{value}}"

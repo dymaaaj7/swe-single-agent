@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# count_lines - Count the number of lines in a file
+
+if [ $# -eq 0 ]; then
+    echo "Usage: count_lines <file_path>"
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "Error: File '$1' not found"
+    exit 1
+fi
+
+wc -l "$1"

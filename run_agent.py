@@ -34,10 +34,10 @@ def main():
     config_path = script_dir / "config" / "custom.yaml"
 
     # Path to the problem statement file (markdown)
-    problem_statement_path = Path.home() / "source/calculator-test/problem.md"
+    problem_statement_path = Path.home() / "source" / "calculator-test" / "problem.md"
 
     # Path to the repository
-    repo_path = Path.home() / "source/calculator-test"
+    repo_path = Path.home() / "source" / "calculator-test"
 
     # Output directory for trajectories and results
     output_dir = script_dir / "trajectories"

@@ -1,0 +1,26 @@
+tools:
+  test_runner:
+    signature: "test_runner <test_path> [<verbose>] [<collect_only>]"
+    docstring: |
+      Run pytest tests on a specific file or directory.
+      
+      Options:
+      - --verbose: Show detailed test output
+      - --collect-only: List all tests without running them
+      
+      Use this after making changes to verify your fix works.
+    arguments:
+      - name: test_path
+        type: string
+        description: "Path to test file or directory"
+        required: true
+      - name: verbose
+        type: boolean
+        description: "Show detailed output"
+        required: false
+        argument_format: "--collect-{{value}}"
+      - name: collect_only
+        type: boolean
+        description: "Only list tests, don't run"
+        required: false
+        argument_format: "--{{value}}"

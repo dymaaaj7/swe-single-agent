@@ -11,7 +11,6 @@ from threading import Lock
 from time import time
 
 from sweagent.run.hooks.abstract import RunHook
-from sweagent.run.merge_predictions import merge_predictions
 from sweagent.types import AgentRunResult
 from sweagent.utils.log import get_logger
 
@@ -69,10 +68,6 @@ class SweBenchEvaluate(RunHook):
         current_time = time()
         if current_time - self.last_evaluation_time < self.evaluation_interval:
             return
-
-        with self.merge_lock:
-            merge_predictions([self.output_dir], self.output_dir / "tmppreds.json")
-            self.last_evaluation_time = current_time
 
         self._running_calls.append(
             subprocess.Popen(

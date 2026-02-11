@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+
+import os
+import re
+import sys
+from pathlib import Path
+
+
+def find_todos(path, recursive=False):
+    """Find TODO, FIXME, and XXX comments in files."""
+    patterns = [
+        (r"#.*TODO.*", "TODO"),
+        (r"#.*FIXME.*", "FIXME"),
+        (r"#.*XXX.*", "XXX"),
+        (r"//.*TODO.*", "TODO"),
+        (r"//.*FIXME.*", "FIXME"),
+        (r"<!--.*TODO.*", "TODO"),
+    ]
+
+    results = []
+
+    if os.path.isfile(path):  # noqa: PTH113
+        files = [path]
+    elif os.path.isdir(path):  # noqa: PTH112
+        if recursive:
+            files = [str(f) for f in Path(path).rglob("*") if f.is_file()]
+        else:
+            files = [str(f) for f in Path(path).iterdir() if f.is_file()]
+    else:
+        print(f"Error: '{path}' not found")
+        sys.exit(1)
+
+    for filepath in files:
+        try:
+            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                for line_num, line in enumerate(f, 1):
+                    for pattern, marker in patterns:
+                        if re.search(pattern, line, re.IGNORECASE):
+                            # Extract the comment text
+                            match = re.search(pattern, line, re.IGNORECASE)
+                            results.append({"file": filepath, "line": line_num, "marker": marker, "text": line.strip()})
+                            break
+        except Exception:
+            continue
+
+    return results
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: todo_finder <path> [--recursive]")
+        sys.exit(1)
+
+    path = sys.argv[1]
+    recursive = "--recursive" in sys.argv
+
+    results = find_todos(path, recursive)
+
+    if not results:
+        print("No TODO, FIXME, or XXX comments found.")
+        return
+
+    print(f"Found {len(results)} items:\n")
+    for r in results:
+        print(f"{r['file']}:{r['line']} [{r['marker']}] {r['text']}")
+
+
+if __name__ == "__main__":
+    main()

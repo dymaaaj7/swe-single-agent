@@ -1,0 +1,14 @@
+tools:
+  file_size:
+    signature: "file_size <path> [<all>]"
+    docstring: "Show file or directory size in human-readable format. Use --all to list all files in a directory with their sizes."
+    arguments:
+      - name: path
+        type: string
+        description: "Path to file or directory"
+        required: true
+      - name: all
+        type: boolean
+        description: "If true, list all files in directory with sizes"
+        required: false
+        argument_format: "--{{value}}"

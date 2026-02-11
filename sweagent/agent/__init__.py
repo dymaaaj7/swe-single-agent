@@ -31,12 +31,10 @@ from sweagent.agent.history_processors import DefaultHistoryProcessor, HistoryPr
 from sweagent.agent.hooks.abstract import AbstractAgentHook, CombinedAgentHook
 from sweagent.agent.models import (
     AbstractModel,
-    InstanceStats,
     ModelConfig,
     get_model,
 )
 from sweagent.agent.problem_statement import ProblemStatement, ProblemStatementConfig
-
 from sweagent.environment.swe_env import SWEEnv
 from sweagent.exceptions import (
     ContentPolicyViolationError,
@@ -44,9 +42,6 @@ from sweagent.exceptions import (
     CostLimitExceededError,
     FormatError,
     TotalCostLimitExceededError,
-)
-from sweagent.tools.parsing import (
-    ThoughtActionParser,
 )
 from sweagent.tools.tools import ToolConfig, ToolHandler
 from sweagent.types import (
