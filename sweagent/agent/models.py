@@ -452,7 +452,14 @@ class LiteLLMModel(AbstractModel):
             if "is longer than the model's context length" in str(e):
                 raise ContextWindowExceededError from e
             raise
-        self.logger.debug(f"Response: {response}")
+        # Pretty print the response for debugging
+        if hasattr(response, "model_dump"):
+            response_dict = response.model_dump()
+        elif hasattr(response, "to_dict"):
+            response_dict = response.to_dict()
+        else:
+            response_dict = str(response)
+        self.logger.debug(f"Response:\n{json.dumps(response_dict, indent=2, default=str)}")
         try:
             cost = litellm.cost_calculator.completion_cost(response, model=self.config.name)
         except Exception as e:

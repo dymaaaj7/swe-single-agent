@@ -6,7 +6,7 @@ import json
 import logging
 import time
 from pathlib import Path, PurePosixPath
-from typing import Annotated, Any, Literal
+from typing import Any, Literal
 
 import yaml
 from jinja2 import Template
@@ -31,12 +31,10 @@ from sweagent.agent.history_processors import DefaultHistoryProcessor, HistoryPr
 from sweagent.agent.hooks.abstract import AbstractAgentHook, CombinedAgentHook
 from sweagent.agent.models import (
     AbstractModel,
-    InstanceStats,
     ModelConfig,
     get_model,
 )
 from sweagent.agent.problem_statement import ProblemStatement, ProblemStatementConfig
-
 from sweagent.environment.swe_env import SWEEnv
 from sweagent.exceptions import (
     ContentPolicyViolationError,
