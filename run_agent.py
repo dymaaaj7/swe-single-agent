@@ -34,10 +34,10 @@ def main():
     config_path = script_dir / "config" / "custom.yaml"
 
     # Path to the problem statement file (markdown)
-    problem_statement_path = Path.home() / "source" / "calculator-test" / "problem.md"
+    # problem_statement_path = Path.home() / "Documents" / "cvetko" / "problem.md"
 
     # Path to the repository
-    repo_path = Path.home() / "source" / "calculator-test"
+    repo_path = Path.home() / "Documents" / "cvetko" / "test-project-for-agents"
 
     # Output directory for trajectories and results
     output_dir = script_dir / "trajectories"
@@ -66,7 +66,19 @@ def main():
     )
 
     # Read the problem statement from file
-    problem_text = problem_statement_path.read_text()
+    problem_text = """(venv) mita@china-shit:~/Documents/cvetko/test-project-for-agents$ python main.py
+    Traceback (most recent call last):
+    File "/home/mita/Documents/cvetko/test-project-for-agents/main.py", line 25, in <module>
+        main()
+    File "/home/mita/Documents/cvetko/test-project-for-agents/main.py", line 20, in main
+        result = greet_user(user_name, user_age)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/home/mita/Documents/cvetko/test-project-for-agents/main.py", line 10, in greet_user
+        message = "Hello, " + name + "! You were born in " + birth_year
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+    TypeError: can only concatenate str (not "int") to str
+    This is the error that I get. Can you fix it please?"""
+    # problem_text = problem_statement_path.read_text()
     problem_statement = TextProblemStatement(text=problem_text)
 
     # ============================================================
@@ -84,7 +96,7 @@ def main():
     # Run the agent
     print("Running SWE-agent with:")
     print(f"  Config: {config_path}")
-    print(f"  Problem: {problem_statement_path}")
+    print(f"  Problem: {problem_statement}")
     print(f"  Repo: {repo_path}")
     print(f"  Output: {output_dir}")
     print()
