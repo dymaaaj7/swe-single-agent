@@ -38,6 +38,7 @@ def main():
 
     # Path to the repository
     repo_path = Path.home() / "Documents" / "cvetko" / "test-project-for-agents"
+    # repo_path = "/home/Documents/cvetko/test-project-for-agents"
 
     # Output directory for trajectories and results
     output_dir = script_dir / "trajectories"
@@ -66,7 +67,9 @@ def main():
     )
 
     # Read the problem statement from file
-    problem_text = """(venv) mita@china-shit:~/Documents/cvetko/test-project-for-agents$ python main.py
+    problem_text = """
+    The repository is at /test-project-for-agents. Start by viewing the relevant files from that directory.
+    (venv) mita@china-shit:~/Documents/cvetko/test-project-for-agents$ python main.py
     Traceback (most recent call last):
     File "/home/mita/Documents/cvetko/test-project-for-agents/main.py", line 25, in <module>
         main()
